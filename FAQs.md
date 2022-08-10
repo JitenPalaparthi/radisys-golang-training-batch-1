@@ -1,5 +1,5 @@
 ### Keywords
-func, package
+func, import, package
 
 ### Builtin functions
 println
