@@ -1,5 +1,5 @@
 ### Keywords
-func, import, package
+const,func, import, package,var
 
 ### Builtin functions
-println
+print,println,complex
