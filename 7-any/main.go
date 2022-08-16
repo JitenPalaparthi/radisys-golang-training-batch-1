@@ -10,6 +10,7 @@ import (
 // byte is nothing but uint8
 
 // empty interface
+// type any = interface{}
 func main() {
 
 	//var val interface{} // this is called as empty interface. This is capable of holding any kind of value
@@ -40,6 +41,16 @@ func main() {
 	fmt.Println("Value:", val, "Type:", reflect.TypeOf(val))
 
 	//fmt.Println(val)
+
+	var a any = 100 // int
+	var b int = 200
+	var c float32 = 300.003
+
+	d := a.(int) + b + int(c)
+	fmt.Println("a+b+c:", d, "type:", reflect.TypeOf(d))
+	e := float32(a.(int)) + float32(b) + c
+	fmt.Println("a+b+c:", e, "type:", reflect.TypeOf(e))
+
 }
 
 // a,b,c
