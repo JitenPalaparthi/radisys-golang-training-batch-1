@@ -94,3 +94,7 @@ func MinAndMax2(arr [5]int) (int, int, error) {
 
 // stack or heap
 // escape analysis
+
+// go.dev
+
+// Effective Go
