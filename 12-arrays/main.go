@@ -42,9 +42,7 @@ func main() {
 		}
 		print(arr4[i], " ")
 	}
-
 	fmt.Println("Max value in arr4:", max)
-
 }
 
 // reverse the array
