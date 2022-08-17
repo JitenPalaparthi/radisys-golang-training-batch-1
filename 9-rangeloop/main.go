@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // range loop is used in three ways
 // 1- arrays , slices --> index,value
 // 2- maps --> key,value
@@ -16,6 +18,12 @@ func main() {
 
 	for i, _ := range str {
 		println("index: ", i)
+	}
+
+	count := 1
+	for range str {
+		fmt.Println(str+"->", count)
+		count++
 	}
 }
 

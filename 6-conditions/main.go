@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 type char = rune // creating a type using underlining type
 
@@ -38,6 +41,14 @@ func main() { //{ func, if else, for, switch, select
 		fmt.Println(b, "b is bigger")
 	} else if c > a && c > b {
 		fmt.Println(c, "c is bigger")
+	}
+
+	for i := 1; i <= 10; i++ {
+		if num := rand.Intn(100); num%2 == 0 {
+			fmt.Println(num, "is an even number")
+		} else {
+			fmt.Println(num, "is an odd number")
+		}
 	}
 }
 
