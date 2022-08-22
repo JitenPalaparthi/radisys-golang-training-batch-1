@@ -5,6 +5,7 @@ import (
 	"shapes/shape/cube"
 	r "shapes/shape/rect" // r is alias .. if not you can directly call with rect.funcnames
 	"shapes/shape/square"
+	// "shapes/shape/*" // this cannot be done
 )
 
 func main() {
