@@ -43,8 +43,13 @@ func main() {
 	}
 
 	delete(mymap, "bangalore-1")
-
 	// mymap1 := mymap
+
+	var mymap1 map[string][]any
+
+	mymap1 = make(map[string][]any)
+
+	mymap1["bangalore"] = []any{560086, 560096, 560076}
 
 }
 
@@ -54,3 +59,6 @@ func main() {
 
 // delete an element from the map , it should tell whether deleted or not.
 // check nil conditions for all functions.. if nil then return as an error
+
+// create a slice with duplicate elements
+// using map find out how many duplicates are there for each element.
