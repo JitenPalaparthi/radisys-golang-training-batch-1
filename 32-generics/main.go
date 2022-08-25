@@ -96,8 +96,10 @@ type IFloat interface {
 	ToString() string
 }
 
-// auto
-// Object
-// Object
-// interface{}
-// any
+// Calc
+// Add, Sub, Mul, Divide methods in clac
+// Calc is a struct
+// Calc should have a and b as fields
+// the type a and type of b must be taken as generics
+// all methods must work on those types.
+// func Add[T]()(T) // T can be int,float of all variations
