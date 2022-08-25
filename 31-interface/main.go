@@ -95,4 +95,4 @@ func (s *Shape) Perimeter() {
 // create a slice or array
 // slice must be as follows []IShape
 // create two or three instances of each shape .. rect,square, triangle, cuboid
-// use range loop and call Area and Perimeter methods
+// use range loop on []IShape and call Area and Perimeter methods
