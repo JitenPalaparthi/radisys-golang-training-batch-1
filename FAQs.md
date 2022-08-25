@@ -7,3 +7,5 @@ append,cap,complex,copy,delete, len,make,new,print,println
 
 ### Question
 - How does map fetch buckets ? Does it do any kind of sorting ?
+
+function type must have no type parameter.Unable to use generics in anonymous functions
