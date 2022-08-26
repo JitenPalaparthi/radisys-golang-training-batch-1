@@ -33,9 +33,6 @@ func main() {
 		}
 	}
 
-	// slice := make([]calcFunc, 5)
-	// slice[0] = addition
-	// slice[1] = substract
 }
 
 func addition(a, b int) int {
@@ -47,3 +44,6 @@ func division(c int) calcFunc {
 		return (a1 / b1) + c
 	}
 }
+
+// calcFunc add it to slice
+// call each item in the slice and execute each func
