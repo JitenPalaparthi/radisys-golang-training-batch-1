@@ -11,6 +11,7 @@ import (
 var num int = 0 // data race
 
 func main() {
+
 	mu := new(sync.Mutex)
 	go func() {
 		for i := 1; i <= 100; i++ {
@@ -24,6 +25,13 @@ func main() {
 	// }()
 	time.Sleep(time.Second * 1)
 	fmt.Println("\n", num)
+
+	// var slice1 []int
+
+	// slice1 = append(slice1, 1000, 10001, 10002) // append instantiate slice as well
+	// fmt.Println(slice1)
+
+	// slice2 := new([]int)
 }
 
 func increment(mu *sync.Mutex) {
