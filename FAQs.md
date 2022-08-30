@@ -1,8 +1,8 @@
 ### Keywords
-break, case, const, continue, else, fallthrough, for, func, go, if, import,map, package, range, return, struct, switch, type, var 
+break, case, chan, const, continue, else, fallthrough, for, func, go, if, import,map, package, range, return, struct, switch, type, var 
 
 ### Builtin functions
-append,cap,complex,copy,delete, len,make,new,print,println
+append,cap,close, complex,copy,delete, len,make,new,print,println
 
 
 ### Question
