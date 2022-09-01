@@ -1,0 +1,41 @@
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"os"
+)
+
+func main() {
+
+	// fs := new(FileServer)
+	// fs.FileName = "temp.fs"
+	// fmt.Fprintln(fs, "Hello World!")
+
+	// fmt.Fprintln(fs, "Hello World-2", "Testing how does this interface work", time.Now())
+
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "Hello World!")
+	})
+
+	if err := http.ListenAndServe(":50090", nil); err != nil {
+		panic(err)
+	}
+}
+
+type FileServer struct {
+	FileName string
+}
+
+func (fs *FileServer) Write(b []byte) (int, error) {
+	f, err := os.Create(fs.FileName)
+	if err != nil {
+		return 0, err
+	}
+	return f.WriteString(string(b))
+}
+
+// 0.0.0.0
+// 127.0.0.1 [loopback]
+// et0, edh0, lo, cni0,wsl0, blo0
+//

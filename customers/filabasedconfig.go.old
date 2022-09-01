@@ -1,0 +1,69 @@
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"os"
+
+	"gopkg.in/yaml.v3"
+)
+
+var (
+	PORT string
+)
+
+func main() {
+
+	// flag.StringVar(&PORT, "port", "50090", "--port=50090")
+	// flag.Parse()
+
+	// if os.Getenv("PORT") != "" {
+	// 	PORT = os.Getenv("PORT")
+	// }
+
+	// cobra
+	//fmt.Println(os.Args, len(os.Args))
+
+	buf, err := os.ReadFile("application.yaml")
+	if err != nil {
+		panic(err)
+	}
+	config := new(Config)
+	//err = json.Unmarshal(buf, config)
+	err = yaml.Unmarshal(buf, config)
+	if err != nil {
+		panic(err)
+	}
+
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "Hello World!")
+	})
+	http.HandleFunc("/ping", ping)
+	http.HandleFunc("/greet", greet("Hello Folks!"))
+	fmt.Println("Application", config.Name+" is listening on port", config.Port)
+	// if err := http.ListenAndServe(":"+PORT, nil); err != nil {
+	// 	panic(err)
+	// }
+
+	http.ListenAndServe(":"+config.Port, nil)
+}
+
+func ping(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "pong")
+}
+
+func greet(msg string) func(http.ResponseWriter, *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, msg)
+	}
+}
+
+type Config struct {
+	Name string `json:"name" yaml:"name"`
+	Port string `json:"port" yaml:"port"`
+}
+
+// 0.0.0.0
+// 127.0.0.1 [loopback]
+// et0, edh0, lo, cni0,wsl0, blo0
+//
