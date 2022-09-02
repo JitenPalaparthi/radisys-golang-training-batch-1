@@ -37,7 +37,7 @@ func main() {
 	}
 
 	cdb := new(dal.CustomerDB)
-	cdb.Client = db
+	cdb.DB = db
 
 	r := gin.Default()
 
@@ -48,12 +48,13 @@ func main() {
 			"message": "pong",
 		})
 	})
-
 	chandler := new(handlers.CustomerHandler)
 	chandler.ICustomer = cdb
-
-	r.POST("v1/customer", chandler.Create())
-	//
+	v1 := r.Group("v1/public/customer")
+	v1.POST("/add", chandler.Create())
+	v1.GET("/:id", chandler.GetBy())
+	v1.PUT("/:id", chandler.UpdateBy())
+	v1.DELETE("/:id", chandler.DeleteBy())
+	v1.GET("/all", chandler.GetAll())
 	r.Run(":" + PORT) // http.ListenAndServe()
-
 }

@@ -16,9 +16,9 @@ type Customer struct {
 	Name         string `json:"name"`
 	Email        string `json:"email"`
 	Address      string `json:"address"`
-	ContactNo    string `json:"contactNo"`
+	ContactNo    string `json:"contactNo" gorm:"column:contactNo"`
 	Status       string `json:"status"`
-	LastModified string `json:"lastModified"`
+	LastModified string `json:"lastModified" gorm:"column:lastModified"`
 }
 
 func (c *Customer) Validate() error {
