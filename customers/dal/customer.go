@@ -32,6 +32,15 @@ func (c *CustomerDB) GetBy(id int) (*models.Customer, error) {
 	return customer, nil
 }
 
+func (c *CustomerDB) GetByStatus(status string) ([]models.Customer, error) {
+	var customers []models.Customer
+	tx := c.Find(&customers, map[string]interface{}{"status": status})
+	if tx.Error != nil {
+		return nil, tx.Error
+	}
+	return customers, nil
+}
+
 func (c *CustomerDB) UpdateBy(id int, data map[string]interface{}) (*models.Customer, error) {
 	customer := new(models.Customer)
 	customer.ID = id

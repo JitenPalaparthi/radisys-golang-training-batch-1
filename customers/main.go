@@ -16,7 +16,7 @@ var (
 	PORT string
 	DSN  string
 	//dsn := "host=localhost user=admin password=admin123 dbname=customersdb port=5432 sslmode=disable TimeZone=Asia/Shanghai"
-
+	KAFKA_CONN []string = []string{"localhost:29092"}
 )
 
 func usage() {
@@ -36,6 +36,7 @@ func main() {
 
 	flag.StringVar(&PORT, "port", "50090", "--port=50090")
 	flag.StringVar(&DSN, "db", "host=localhost user=admin password=admin123 dbname=customersdb port=5432 sslmode=disable TimeZone=Asia/Shanghai", "--db=host=localhost user=admin password=admin123 dbname=customersdb port=5432 sslmode=disable TimeZone=Asia/Shanghai")
+
 	flag.Set("stderrthreshold", "INFO") // can set up the glog
 	flag.Parse()
 	defer glog.Flush()
@@ -66,8 +67,11 @@ func main() {
 			"message": "pong",
 		})
 	})
+
 	chandler := new(handlers.CustomerHandler)
 	chandler.ICustomer = cdb
+	chandler.Conn = KAFKA_CONN
+
 	v1 := r.Group("v1/public/customer")
 	v1.POST("/add", chandler.Create())
 	v1.GET("/:id", chandler.GetBy())

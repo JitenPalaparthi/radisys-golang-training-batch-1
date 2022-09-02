@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"customers/interfaces"
+	"customers/messagebroker"
 	"customers/models"
 	"fmt"
 	"net/http"
@@ -14,6 +15,7 @@ import (
 
 type CustomerHandler struct {
 	ICustomer interfaces.ICustomer
+	Conn      []string
 	// Logger    log.Logger
 }
 
@@ -47,6 +49,9 @@ func (ch *CustomerHandler) Create() func(*gin.Context) {
 			c.Abort()
 			return
 		} else {
+			// remove this code and write in examples/publish.go
+			val, _ := customer.ToBytes()
+			messagebroker.Publish(ch.Conn, "customer.created", []byte(strconv.Itoa(customer.ID)), val)
 			c.JSON(http.StatusCreated, cust)
 			return
 		}
