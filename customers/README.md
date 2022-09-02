@@ -11,4 +11,6 @@
 
     ```docker run -d --name customersdbpg -p 5432:5432 -e POSTGRES_PASSWORD=admin123 -e POSTGRES_USER=admin -e POSTGRES_DB=customersdb postgres```
 
-    9618558500
+- To run application with logger , glog
+
+    ```go run main.go -stderrthreshold=INFO -logtostderr=true```

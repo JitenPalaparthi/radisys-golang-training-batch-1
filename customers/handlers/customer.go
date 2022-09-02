@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/golang/glog"
 )
 
 type CustomerHandler struct {
@@ -24,23 +25,25 @@ func (ch *CustomerHandler) Create() func(*gin.Context) {
 		// c.Request.Body.Read(buf)
 
 		if err != nil {
-			//ch.Logger.Println(err)
-			c.JSON(http.StatusBadRequest, gin.H{"status": "fail-1", "message": err.Error()})
+			glog.Error(err.Error())
+			c.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
 			c.Abort()
 			return
 		}
 
 		if err := customer.Validate(); err != nil {
-			//ch.Logger.Println(err)
-			c.JSON(http.StatusBadRequest, gin.H{"status": "fail-2", "message": err.Error()})
+			glog.Error(err.Error())
+			c.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
 			c.Abort()
 			return
 		}
 
 		customer.Status = "created"
 		customer.LastModified = fmt.Sprint(time.Now().Unix())
+		glog.Info("creating a new customer")
 		if cust, err := ch.ICustomer.Add(customer); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"status": "fail-3", "message": err.Error()})
+			glog.Error(err.Error())
+			c.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
 			c.Abort()
 			return
 		} else {

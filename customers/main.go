@@ -4,11 +4,12 @@ import (
 	"customers/dal"
 	"customers/handlers"
 	"flag"
-	"log"
+	"fmt"
 	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/golang/glog"
 )
 
 var (
@@ -18,12 +19,26 @@ var (
 
 )
 
+func usage() {
+	fmt.Fprintf(os.Stderr, "usage: example -stderrthreshold=[INFO|WARNING|ERROR|FATAL] -log_dir=[string]\n")
+	flag.PrintDefaults()
+	os.Exit(2)
+}
+
+func init() {
+	flag.Usage = usage
+	// NOTE: This next line is key you have to call flag.Parse() for the command line
+	// options or "flags" that are defined in the glog module to be picked up.
+	//flag.Parse()
+}
+
 func main() {
 
 	flag.StringVar(&PORT, "port", "50090", "--port=50090")
 	flag.StringVar(&DSN, "db", "host=localhost user=admin password=admin123 dbname=customersdb port=5432 sslmode=disable TimeZone=Asia/Shanghai", "--db=host=localhost user=admin password=admin123 dbname=customersdb port=5432 sslmode=disable TimeZone=Asia/Shanghai")
+	flag.Set("stderrthreshold", "INFO") // can set up the glog
 	flag.Parse()
-
+	defer glog.Flush()
 	if os.Getenv("PORT") != "" {
 		PORT = os.Getenv("PORT")
 	}
@@ -31,11 +46,14 @@ func main() {
 		DSN = os.Getenv("DB_CONN")
 	}
 
+	glog.Info("Connecting to the database--")
 	db, err := dal.GetConnection(DSN)
+
 	if err != nil {
-		log.Fatal(err)
+		glog.Fatal(err)
 	}
 
+	glog.Info("creating new instance of CustomerDB")
 	cdb := new(dal.CustomerDB)
 	cdb.DB = db
 
@@ -58,3 +76,9 @@ func main() {
 	v1.GET("/all", chandler.GetAll())
 	r.Run(":" + PORT) // http.ListenAndServe()
 }
+
+// observability
+// logs
+// metrics
+// traces
+//
