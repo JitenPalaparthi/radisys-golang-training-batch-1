@@ -14,3 +14,7 @@
 - To run application with logger , glog
 
     ```go run main.go -stderrthreshold=INFO -logtostderr=true```
+
+- to run kafka
+
+    ```docker-compose -f components/kafka-zookeeper.yaml up -d```
