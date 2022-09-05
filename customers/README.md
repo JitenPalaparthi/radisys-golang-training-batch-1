@@ -18,3 +18,11 @@
 - to run kafka
 
     ```docker-compose -f components/kafka-zookeeper.yaml up -d```
+
+- To run a test
+
+    ```go test -timeout 30s -run ^TestValidate$ customers/models```
+
+- To execute all tests from a package 
+
+    ```go test customers/models```
