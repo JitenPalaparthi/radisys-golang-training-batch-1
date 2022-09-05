@@ -45,5 +45,4 @@ func TestToString(t *testing.T) {
 		t.Log(actualResult)
 		t.Fail()
 	}
-
 }

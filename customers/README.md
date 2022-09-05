@@ -26,3 +26,20 @@
 - To execute all tests from a package 
 
     ```go test customers/models```
+
+- To test everything
+
+    ```go test -v ./...```
+
+- To check coverage of tests
+
+- First write the coverage using -coverprofile 
+    ```go test -coverprofile=coverage.out ./...```
+    
+- can check in html output
+    ```go tool cover -html=coverage.out```
+
+
+protoc --go_out=. --go_opt=paths=source_relative \
+    --go-grpc_out=. --go-grpc_opt=paths=source_relative \
+    protos/customer.proto

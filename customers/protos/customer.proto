@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package="customers/protos";
+
+package customer;
+
+service CustomerService{
+    rpc Create(CustomerRequest) returns (CustomerResponse){}
+    //rpc Delete(CustomerDeleteRequest) returns (CustomerResponse){}
+}
+
+message CustomerRequest{
+string Name=1;
+string Email=2;
+string Address=3;
+}
+
+message CustomerResponse{
+int32 Code=1;
+string Message=2;
+}
+
+// message CustomerDeleteRequest{
+//     int ID =1;
+// }
+
+

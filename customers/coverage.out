@@ -1,0 +1,12 @@
+mode: set
+customers/models/customer.go:24.37,25.18 1 1
+customers/models/customer.go:28.2,28.19 1 1
+customers/models/customer.go:31.2,31.23 1 1
+customers/models/customer.go:34.2,34.12 1 1
+customers/models/customer.go:25.18,27.3 1 0
+customers/models/customer.go:28.19,30.3 1 0
+customers/models/customer.go:31.23,33.3 1 1
+customers/models/customer.go:37.47,40.2 2 1
+customers/models/customer.go:42.46,43.45 1 1
+customers/models/customer.go:43.45,45.3 1 0
+customers/models/customer.go:45.8,47.3 1 1
