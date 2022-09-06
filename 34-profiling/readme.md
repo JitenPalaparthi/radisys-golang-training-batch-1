@@ -7,4 +7,6 @@
 	
 ```go test -cpuprofile cpu.prof -memprofile mem.prof -bench .```
 
+```go tool pprof -http=:6001 profile```
+
 
