@@ -15,7 +15,6 @@ type Server struct {
 }
 
 func (s *Server) Create(ctx context.Context, in *pb.CustomerRequest) (*pb.CustomerResponse, error) {
-
 	customer := new(models.Customer)
 	customer.Email = in.Email
 	customer.Address = in.Address
